@@ -4,22 +4,26 @@ pipeline{
         stage('Build backend'){
             steps{
                 // Build docker image for backend
+                sh 'docker build -t mean-stack-app-backend -f ./backend/docker/Dockerfile .'
             }
         }
         stage('Build frontend'){
             steps{
                 //Build docker image for frontend
+                sh 'docker build -t mean-stack-app-frontend -f ./docker/Dockerfile .'
             }
         }
         stage('Push images'){
             steps{
                 // push images to dockerhub registry
+                sh 'echo pushing...'
             }
         }
         stage('Deploy'){
             steps{
                 // pull images from registry
                 // run containers with docker-compose
+                sh 'echo deploying...'
             }
         }
     }
