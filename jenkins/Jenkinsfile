@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+    stages{
+        stage('Build backend'){
+            steps{
+                // Build docker image for backend
+            }
+        }
+        stage('Build frontend'){
+            steps{
+                //Build docker image for frontend
+            }
+        }
+        stage('Push images'){
+            steps{
+                // push images to dockerhub registry
+            }
+        }
+        stage('Deploy'){
+            steps{
+                // pull images from registry
+                // run containers with docker-compose
+            }
+        }
+    }
+}
