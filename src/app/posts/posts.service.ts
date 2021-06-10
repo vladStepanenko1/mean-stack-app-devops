@@ -20,7 +20,8 @@ export class PostsService {
     const queryParams = `?pageSize=${postsPerPage}&page=${currentPage}`;
     this.http
       .get<{ message: string; posts: any[]; maxPosts: number }>(
-        "http://localhost:3000/api/posts" + queryParams
+        //"http://localhost:3000/api/posts" + queryParams
+        "/api/posts" + queryParams
       )
       // adding pipe operator map()
       .pipe(
@@ -61,7 +62,8 @@ export class PostsService {
       content: string;
       imagePath: string;
       creator: string;
-    }>(`http://localhost:3000/api/posts/${id}`);
+    //}>(`http://localhost:3000/api/posts/${id}`);
+    }>(`/api/posts/${id}`);
   }
 
   // create post
@@ -73,7 +75,8 @@ export class PostsService {
 
     this.http
       .post<{ message: string; post: Post }>(
-        "http://localhost:3000/api/posts",
+        //"http://localhost:3000/api/posts",
+        "/api/posts",
         postData
       )
       .subscribe((responseData) => {
@@ -99,7 +102,8 @@ export class PostsService {
         creator: null,
       };
     }
-    this.http.put(`http://localhost:3000/api/posts/${id}`, postData).subscribe(
+    //this.http.put(`http://localhost:3000/api/posts/${id}`, postData).subscribe(
+      this.http.put(`/api/posts/${id}`, postData).subscribe(
       (response) => {
         this.router.navigate(["/"]);
       },
@@ -110,6 +114,7 @@ export class PostsService {
   }
 
   deletePost(postId: string) {
-    return this.http.delete(`http://localhost:3000/api/posts/${postId}`);
+    //return this.http.delete(`http://localhost:3000/api/posts/${postId}`);
+    return this.http.delete(`/api/posts/${postId}`);
   }
 }

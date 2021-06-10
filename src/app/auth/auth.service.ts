@@ -35,7 +35,8 @@ export class AuthService {
   // create new user
   createUser(email: string, password: string) {
     const authData: AuthData = { email, password }; // assign to type defined in interface
-    this.http.post('http://localhost:3000/api/user/signup', authData).subscribe(
+    //this.http.post('http://localhost:3000/api/user/signup', authData).subscribe(
+      this.http.post('/api/user/signup', authData).subscribe(
       () => {
         //  create observable
         this.router.navigate(['/']);
@@ -51,7 +52,8 @@ export class AuthService {
     const authData: AuthData = { email, password }; // assign to type defined in interface
     this.http
       .post<{ token: string; expiresIn: number; userId: string }>(
-        'http://localhost:3000/api/user/login',
+        //'http://localhost:3000/api/user/login',
+        '/api/user/login',
         authData
       )
       .subscribe(
