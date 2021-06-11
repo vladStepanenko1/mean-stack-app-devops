@@ -1,15 +1,11 @@
 version: '3.9'
 services: 
     backend:
-        build:
-            context: .
-            dockerfile: ./backend/docker/Dockerfile
+        image: vladyslavstepanenko1/mean-stack-app-backend:latest
         depends_on: 
             - db
     frontend:
-        build:
-            context: .
-            dockerfile: ./docker/Dockerfile
+        image: vladyslavstepanenko1/mean-stack-app-frontend:latest
     db:
         image: mongo:latest
     nginx:

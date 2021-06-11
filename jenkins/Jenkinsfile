@@ -33,8 +33,13 @@ pipeline{
         stage('Deploy'){
             steps{
                 // pull images from registry
+                withCredentials([usernamePassword(credentialsId:'dockerHubCredentials', 
+                                                  usernameVariable:'DOCKER_USER',
+                                                  passwordVariable:'DOCKER_PASSWORD')]){
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD'
+                }
                 // run containers with docker-compose
-                sh 'echo deploying...'
+                sh 'docker-compose up -d'
             }
         }
     }
