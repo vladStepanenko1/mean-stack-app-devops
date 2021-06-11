@@ -19,9 +19,15 @@ pipeline{
         }
         stage('Push images'){
             steps{
-                // push images to dockerhub registry
-                sh "docker push ${BACKEND_IMAGE_NAME}:latest"
-                sh "docker push ${FRONTEND_IMAGE_NAME}:latest"
+                withCredentials([usernamePassword(credentialsId:'dockerHubCredentials', 
+                                                  usernameVariable:'DOCKER_USER',
+                                                  passwordVariable:'DOCKER_PASSWORD')]){
+                    // login to docker hub
+                    sh "docker login -u ${DOCKER_USER} -P ${DOCKER_PASSWORD}"
+                    // push images to docker hub registry
+                    sh "docker push ${BACKEND_IMAGE_NAME}:latest"
+                    sh "docker push ${FRONTEND_IMAGE_NAME}:latest"
+                }
             }
         }
         stage('Deploy'){
