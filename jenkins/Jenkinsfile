@@ -32,7 +32,6 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                // pull images from registry
                 withCredentials([usernamePassword(credentialsId:'dockerHubCredentials', 
                                                   usernameVariable:'DOCKER_USER',
                                                   passwordVariable:'DOCKER_PASSWORD')]){
@@ -40,6 +39,11 @@ pipeline{
                 }
                 // run containers with docker-compose
                 sh 'docker-compose up -d'
+                // input for user
+                timeout(time: 15, unit: "MINUTES"){
+                    input message: 'Stop services?', ok:'yes'
+                }
+                sh 'docker-compose down'
             }
         }
     }
