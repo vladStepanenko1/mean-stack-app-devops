@@ -8,5 +8,7 @@ services:
         image: vladyslavstepanenko1/mean-stack-app-frontend:latest
         ports: 
             - '49002:80'
+        depends_on: 
+            - backend
     db:
         image: mongo:latest
