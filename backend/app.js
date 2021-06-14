@@ -9,7 +9,7 @@ const app = express();
 
 // Connect to DB
 const CONNECTION_URL =
-  "mongo://db:27017";
+  "mongodb://admin:admin@db:27017";
 const CONNECT_OPTIONS = {
   useNewUrlParser: true,
   useCreateIndex: true,
