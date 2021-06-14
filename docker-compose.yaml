@@ -6,11 +6,7 @@ services:
             - db
     frontend:
         image: vladyslavstepanenko1/mean-stack-app-frontend:latest
-    db:
-        image: mongo:latest
-    nginx:
-        build: 
-            context: ./nginx
-            dockerfile: Dockerfile
         ports: 
             - '49002:80'
+    db:
+        image: mongo:latest
