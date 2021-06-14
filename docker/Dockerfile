@@ -6,4 +6,5 @@ COPY . .
 RUN npm run build
 
 FROM nginx:1.21-alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /usr/src/app/dist/mean-stack-appnew /usr/share/nginx/html
