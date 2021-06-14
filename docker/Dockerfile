@@ -7,4 +7,4 @@ RUN npm run build
 
 FROM nginx:1.21-alpine
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /usr/src/app/dist/mean-stack-appnew /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/mean-stack-appnew /etc/nginx/html
